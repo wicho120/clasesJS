@@ -1,4 +1,10 @@
-import prompt from 'async-prompt'
-import { sumarArreglo } from './module/sumarArregloEntreElRango.js'
+import { 
+    getAllOficceAndCodeCity, 
+    getAllOficceCityAndMovil 
+} from "./module/offices.js";
+import { 
+    getAllFullNameAndEmailsAndBoss,
+    getBossFullNameAndEmail 
+} from "./module/employees.js";
 
-console.log(sumarArreglo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0, 9));
+console.log(await getBossFullNameAndEmail());
