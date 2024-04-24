@@ -1,4 +1,4 @@
-// 1. Devuelve un listado con el código de oficina y la ciudad 
+// 1.1 Devuelve un listado con el código de oficina y la ciudad 
 // donde hay oficinas.
 export const getAllOficceAndCodeCity = async()=>{
     let res = await fetch("http://localhost:5504/offices")
@@ -11,7 +11,7 @@ export const getAllOficceAndCodeCity = async()=>{
     })
     return dataUpdate;
 }
-// 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
+// 1.2 Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
 export const getAllOficceCityAndMovil = async()=>{
     let res = await fetch("http://localhost:5504/offices?country=España")
     let data = await res.json();

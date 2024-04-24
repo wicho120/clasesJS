@@ -7,7 +7,7 @@ import {
 
 
 
-// Devuelve un listado con todos los clientes que sean de 
+// 1.16 Devuelve un listado con todos los clientes que sean de 
 // la ciudad de `Madrid` y cuyo representante de ventas tenga el
 // código de empleado `11` o `30`.
 
@@ -29,38 +29,48 @@ export const getAllMadridClientsCodeSalesManager11_30 = async() => {
 
 
 
-// Devuelve el nombre de los clientes y el nombre de sus representantes
+// 2.7 Devuelve el nombre de los clientes y el nombre de sus representantes
 // junto con con la ciudad de la oficina a la que pertenece el representante
 
-export const getAllClientsNameSalesManagerOffice = async() => {
 
-    let res = await fetch("http://localhost:5501/clients")
+export const getAllClientsNameSalesManagerOffice = async () => {
+    let res = await fetch("http://localhost:5501/clients");
     let data = await res.json();
-    let dataUpdate = [1];
+    let dataUpdate = [];
 
-    data.forEach(async val => {
-        
+    await Promise.all(data.map(async (val) => {
         let nameClient = val.client_name;
-        let nameSaleManager;
-        
-        async function getNameSaleManager(){
-            nameSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
-            return nameSaleManager;
-            
+
+        let infoSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
+        let [Manager] = infoSaleManager;
+        let {name:nameSaleManager} = Manager;
+
+        let infoOfficeManager = await getAllInfoOfficeByCode_Office(infoSaleManager[0].code_office);
+        let [Office] = infoOfficeManager;
+        let  {city:nameCityOfficeManager} = Office
+
+        dataUpdate.push({
+            nombreCliente : nameClient,
+            nombreAsesorVenta : nameSaleManager,
+            nombreCiudadOficinaAsesor : nameCityOfficeManager
+        });
+    }));
+
+    return dataUpdate;
+};
+
+// 1.6 Devuelve un listado con el nombre de los todos los clientes españoles.
+
+export const getNamesAllClientsBySpain = async() => {
+    let res = await fetch("http://localhost:5501/clients?country=Spain")
+    let data = await res.json();
+
+    let dataUpdate = data.map(val => {
+        return {
+            nombreCliente : val.client_name
         }
-
-        // getAllInfoOfficeByCode_Office(dataFunct[1]).then(data => {
-        //     dataFunct.push({
-        //         Nombre_Asesor_Ventas: data,
-        //     });
-        // });
-
-        nameSaleManager = await getNameSaleManager();
-
-        dataUpdate.push(nameSaleManager[0].name);
-
-        return dataUpdate;
     });
 
-    return data;
+    return dataUpdate;
 }
+
