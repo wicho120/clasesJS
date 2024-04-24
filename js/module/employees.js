@@ -31,3 +31,13 @@ export const getBossFullNameAndEmail = async() =>{
     })
     return dataUpdate
 }
+
+//Obtener la informacion de un empleado por el codigo
+
+export const getAllInfoEmployeesByCodeEmployee = async(code) => {
+    let res_employees = await fetch(`http://localhost:5502/employees?employee_code=${code}`)
+    let data = await res_employees.json();
+    
+    return data;
+
+}
