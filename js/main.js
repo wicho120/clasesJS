@@ -18,7 +18,9 @@ import {
 } from "./module/clients.js";
 import {
     getAllStatusRequests,
-    getCodesDatesProductsDelivered
+    getAllRequestsDeliveredOverTime,
+    getAllRequestsDeliveredTwoDaysBeforeDateWait,
+    getAllRequestsRefusedBy2009
 } from "./module/requests.js"
 
-console.log(await getCodesDatesProductsDelivered());
+console.log(await getAllRequestsRefusedBy2009());
