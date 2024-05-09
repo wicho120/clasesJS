@@ -9,25 +9,8 @@
 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
 
-   - Utilizando la función [`YEAR` de MySQL](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_year).
-
-   - Utilizando la función [`DATE_FORMAT` de MySQL](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-format).
-
-   - Sin utilizar ninguna de las funciones anteriores.
-
-
 9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
-
-       - Utilizando la función [`ADDDATE` de MySQL](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_adddate).
-
-
-       - Utilizando la función [`DATEDIFF` de MySQL](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_datediff).
-
-
-       - ¿Sería posible resolver esta consulta utilizando el operador de suma `+` o resta `-`?
-
-
 
 11. Devuelve un listado de todos los pedidos que fueron **rechazados** en `2009`.
 
@@ -56,8 +39,6 @@ Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`. Las cons
 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe.
 10. Devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
 11. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente.
-
-
 
 ### Consultas multitabla (Composición externa)
 
