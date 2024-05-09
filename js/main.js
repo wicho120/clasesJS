@@ -14,7 +14,11 @@ import {
 import {
     getAllMadridClientsCodeSalesManager11_30,
     getAllClientsNameSalesManagerOffice,
-    getNamesAllClientsBySpain
+    getNamesAllClientsBySpain,
+    getAllClientsNameAndHisManagerSales,
+    getAllClientsPaidAndNameSalesManager,
+    getAllClientsNoPaidAndNameSalesManager,
+    getAllClientsPaidAndNameSalesManagerAndCityOffice
 } from "./module/clients.js";
 import {
     getAllStatusRequests,
@@ -22,5 +26,3 @@ import {
     getAllRequestsDeliveredTwoDaysBeforeDateWait,
     getAllRequestsRefusedBy2009
 } from "./module/requests.js"
-
-console.log(await getAllRequestsRefusedBy2009());

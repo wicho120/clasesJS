@@ -104,3 +104,21 @@ export const getAllRequestsRefusedBy2009 = async() =>{
 
     return dataUpdate;
 };
+
+// Obtener info de pedido en base a codigo de cliente
+
+export const getAllClientsHaveMadeRequestByClientsCode = async(id) =>{
+
+    let res = await fetch("http://localhost:5508/requests");
+    let data = await res.json();
+    
+    let dataUpdate = false
+
+    data.forEach(val => {
+        if(id == val.code_client){
+            dataUpdate = true;
+        }
+    });
+
+    return dataUpdate;
+};
