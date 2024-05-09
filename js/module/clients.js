@@ -1,9 +1,12 @@
 import { 
     getAllInfoOfficeByCode_Office
-} from "/home/camper/Escritorio/clasesJS/js/module/offices.js";
+} from "./offices.js";
 import { 
     getAllInfoEmployeesByCodeEmployee
-} from "/home/camper/Escritorio/clasesJS/js/module/employees.js";
+} from "./employees.js";
+import {
+    getAllClientsHaveMadeRequestByClientsCode
+} from "./requests.js"
 
 
 
@@ -26,10 +29,28 @@ export const getAllMadridClientsCodeSalesManager11_30 = async() => {
     return dataUpdate;
 }
 
+// 1.6 Devuelve un listado con el nombre de los todos los clientes
+// españoles.
+
+export const getNamesAllClientsBySpain = async() => {
+    let res = await fetch("http://localhost:5501/clients?country=Spain")
+    let data = await res.json();
+
+    let dataUpdate = data.map(val => {
+        return {
+            nombreCliente : val.client_name
+        }
+    });
+
+    return dataUpdate;
+}
+
+//#..........................Consultas para WebComponent....................
 
 
 
-// 2.7 Devuelve el nombre de los clientes y el nombre de sus representantes
+
+// 23 Devuelve el nombre de los clientes y el nombre de sus representantes
 // junto con con la ciudad de la oficina a la que pertenece el representante
 
 
@@ -59,19 +80,130 @@ export const getAllClientsNameSalesManagerOffice = async () => {
     return dataUpdate;
 };
 
-// 1.6 Devuelve un listado con el nombre de los todos los clientes
-// españoles.
 
-export const getNamesAllClientsBySpain = async() => {
-    let res = await fetch("http://localhost:5501/clients?country=Spain")
+// 17. Obtén un listado con el nombre de cada cliente y
+// el nombre y apellido de su representante de ventas.
+
+export const getAllClientsNameAndHisManagerSales = async () => {
+    let res = await fetch("http://localhost:5501/clients");
     let data = await res.json();
+    let dataUpdate = [];
 
-    let dataUpdate = data.map(val => {
-        return {
-            nombreCliente : val.client_name
-        }
-    });
+    await Promise.all(data.map(async (val) => {
+        let nameClient = val.client_name;
+
+        let infoSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
+        let [Manager] = infoSaleManager;
+        let {name:nameSaleManager} = Manager;
+        let {lastname1:lastname1SaleManager} = Manager;
+
+
+        dataUpdate.push({
+            nombreCliente : nameClient,
+            nombreAsesorVenta : `${nameSaleManager} ${lastname1SaleManager}`
+        });
+    }));
 
     return dataUpdate;
-}
+};
 
+// 18. Muestra el nombre de los clientes que hayan realizado
+// pagos junto con el nombre de sus representantes de ventas.
+
+export const getAllClientsPaidAndNameSalesManager = async () => {
+    let res = await fetch("http://localhost:5501/clients");
+    let data = await res.json();
+    let dataUpdate = [];
+
+    await Promise.all(data.map(async (val) => {
+        let nameClient = val.client_name;
+
+        let infoSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
+        let [Manager] = infoSaleManager;
+        let {name:nameSaleManager} = Manager;
+        let {lastname1:lastname1SaleManager} = Manager;
+
+
+        let infoRequests = await getAllClientsHaveMadeRequestByClientsCode(val.client_code);
+        
+        if(infoRequests){
+            dataUpdate.push({
+                nombreCliente : nameClient,
+                nombreAsesorVenta : `${nameSaleManager} ${lastname1SaleManager}`,
+                pedidoRealizado : infoRequests
+            });
+        }
+
+    }));
+
+    return dataUpdate;
+};
+
+// 19. Muestra el nombre de los clientes que **no** hayan 
+// realizado pagos junto con el nombre de sus representantes de ventas.
+
+export const getAllClientsNoPaidAndNameSalesManager = async () => {
+    let res = await fetch("http://localhost:5501/clients");
+    let data = await res.json();
+    let dataUpdate = [];
+
+    await Promise.all(data.map(async (val) => {
+        let nameClient = val.client_name;
+
+        let infoSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
+        let [Manager] = infoSaleManager;
+        let {name:nameSaleManager} = Manager;
+        let {lastname1:lastname1SaleManager} = Manager;
+
+
+        let infoRequests = await getAllClientsHaveMadeRequestByClientsCode(val.client_code);
+        
+        if(!infoRequests){
+            dataUpdate.push({
+                nombreCliente : nameClient,
+                nombreAsesorVenta : `${nameSaleManager} ${lastname1SaleManager}`,
+                pedidoRealizado : infoRequests
+            });
+        }
+    }));
+
+    return dataUpdate;
+};
+
+
+//20. Devuelve el nombre de los clientes que han hecho pagos y
+// el nombre de sus representantes junto con la ciudad de la oficina 
+// a la que pertenece el representante.
+
+export const getAllClientsPaidAndNameSalesManagerAndCityOffice = async () => {
+    let res = await fetch("http://localhost:5501/clients");
+    let data = await res.json();
+    let dataUpdate = [];
+
+    await Promise.all(data.map(async (val) => {
+        let nameClient = val.client_name;
+
+        let infoSaleManager = await getAllInfoEmployeesByCodeEmployee(val.code_employee_sales_manager);
+        let [Manager] = infoSaleManager;
+        let {name:nameSaleManager} = Manager;
+        let {lastname1:lastname1SaleManager} = Manager;
+
+
+        let infoRequests = await getAllClientsHaveMadeRequestByClientsCode(val.client_code);
+        
+        let infoOfficeManager = await getAllInfoOfficeByCode_Office(infoSaleManager[0].code_office);
+        let [Office] = infoOfficeManager;
+        let  {city:nameCityOfficeManager} = Office;
+
+        if(infoRequests){
+            dataUpdate.push({
+                nombreCliente : nameClient,
+                nombreAsesorVenta : `${nameSaleManager} ${lastname1SaleManager}`,
+                pedidoRealizado : infoRequests,
+                ciudadOficinaAsesor : nameCityOfficeManager
+            });
+        }
+    }));
+
+    return dataUpdate;
+};
