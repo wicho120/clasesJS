@@ -16,97 +16,64 @@ export class Mycard extends HTMLElement{
             <link rel="stylesheet" href="../css/myCard.css">  
         `
     }
-    async getAllClientsNameAndHisManagerSales(){
-        let data = await getAllClientsNameAndHisManagerSales();
-         data.forEach(val => {
-            this.shadowRoot.innerHTML += /*html*/`
+
+    getEstructureCard(data){
+
+        let template = ""
+        let keyData = Object.keys(data[0]);
+
+        data.forEach(val => {
+            let keyTemplate = ""
+            keyData.forEach(val2 => {
+                if(keyData.indexOf(val2) != 0){
+                    console.log()
+                    keyTemplate += /*html*/`<p><b>${String(val2)}: </b>${val[String(val2)]}</p>`    
+                }
+            })
+
+            template += /*html*/`
                 <div class="report__card">
                     <div class="card__title">
                         <div>${val.nombreCliente}</div>
                     </div>
                     <div class="card__body">
                         <div class="body__marck">
-                            <p><b>Nombre del asesor: </b>${val.nombreAsesorVenta}</p>
+                            ${keyTemplate}
                         </div>
                     </div>
                 </div>
             `;
         });
+
+        return template
+    }
+    
+    async getAllClientsNameAndHisManagerSales(){
+        let data = await getAllClientsNameAndHisManagerSales();
+        this.shadowRoot.innerHTML += this.getEstructureCard(data);
     }
 
     async getAllClientsPaidAndNameSalesManager(){
         let data = await getAllClientsPaidAndNameSalesManager();
-         data.forEach(val => {
-            this.shadowRoot.innerHTML += /*html*/`
-                <div class="report__card">
-                    <div class="card__title">
-                        <div>${val.nombreCliente}</div>
-                    </div>
-                    <div class="card__body">
-                        <div class="body__marck">
-                            <p><b>Nombre del asesor: </b>${val.nombreAsesorVenta}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+        this.shadowRoot.innerHTML += this.getEstructureCard(data);
     }
 
     async getAllClientsNoPaidAndNameSalesManager(){
         let data = await getAllClientsNoPaidAndNameSalesManager();
-         data.forEach(val => {
-            this.shadowRoot.innerHTML += /*html*/`
-                <div class="report__card">
-                    <div class="card__title">
-                        <div>${val.nombreCliente}</div>
-                    </div>
-                    <div class="card__body">
-                        <div class="body__marck">
-                            <p><b>Nombre del asesor: </b>${val.nombreAsesorVenta}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+        this.shadowRoot.innerHTML += this.getEstructureCard(data);
     }
 
     async getAllClientsPaidAndNameSalesManagerAndCityOffice(){
         let data = await getAllClientsPaidAndNameSalesManagerAndCityOffice();
-         data.forEach(val => {
-            this.shadowRoot.innerHTML += /*html*/`
-                <div class="report__card">
-                    <div class="card__title">
-                        <div>${val.nombreCliente}</div>
-                    </div>
-                    <div class="card__body">
-                        <div class="body__marck">
-                            <p><b>Nombre del asesor: </b>${val.nombreAsesorVenta}</p>
-                            <p><b>Ciudad de la Oficina A. : </b>${val.ciudadOficinaAsesor}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+        this.shadowRoot.innerHTML += this.getEstructureCard(data);
     }
 
     async getAllClientsNameSalesManagerOffice(){
         let data = await getAllClientsNameSalesManagerOffice();
-         data.forEach(val => {
-            this.shadowRoot.innerHTML += /*html*/`
-                <div class="report__card">
-                    <div class="card__title">
-                        <div>${val.nombreCliente}</div>
-                    </div>
-                    <div class="card__body">
-                        <div class="body__marck">
-                            <p><b>Nombre del asesor: </b>${val.nombreAsesorVenta}</p>
-                            <p><b>Ciudad de la Oficina A. : </b>${val.ciudadOficinaAsesor}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+        this.shadowRoot.innerHTML += this.getEstructureCard(data);
     }
+
+    
     // async getAllClientsFromSpainAndRepresentative11Or30Design(){
     //     let data = await getAllClientsFromSpainAndRepresentative11Or30();
     //     data.forEach(val => {

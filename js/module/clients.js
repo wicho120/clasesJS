@@ -10,6 +10,9 @@ import {
 
 
 
+//#..........................Consultas para WebComponent....................
+
+
 // 1.16 Devuelve un listado con todos los clientes que sean de 
 // la ciudad de `Madrid` y cuyo representante de ventas tenga el
 // código de empleado `11` o `30`.
@@ -45,12 +48,9 @@ export const getNamesAllClientsBySpain = async() => {
     return dataUpdate;
 }
 
-//#..........................Consultas para WebComponent....................
 
 
-
-
-// 23 Devuelve el nombre de los clientes y el nombre de sus representantes
+// 2.6 Devuelve el nombre de los clientes y el nombre de sus representantes
 // junto con con la ciudad de la oficina a la que pertenece el representante
 
 
@@ -81,7 +81,7 @@ export const getAllClientsNameSalesManagerOffice = async () => {
 };
 
 
-// 17. Obtén un listado con el nombre de cada cliente y
+// 2.1 Obtén un listado con el nombre de cada cliente y
 // el nombre y apellido de su representante de ventas.
 
 export const getAllClientsNameAndHisManagerSales = async () => {
@@ -107,7 +107,7 @@ export const getAllClientsNameAndHisManagerSales = async () => {
     return dataUpdate;
 };
 
-// 18. Muestra el nombre de los clientes que hayan realizado
+// 2.2 Muestra el nombre de los clientes que hayan realizado
 // pagos junto con el nombre de sus representantes de ventas.
 
 export const getAllClientsPaidAndNameSalesManager = async () => {
@@ -139,7 +139,7 @@ export const getAllClientsPaidAndNameSalesManager = async () => {
     return dataUpdate;
 };
 
-// 19. Muestra el nombre de los clientes que **no** hayan 
+// 2.3 Muestra el nombre de los clientes que **no** hayan 
 // realizado pagos junto con el nombre de sus representantes de ventas.
 
 export const getAllClientsNoPaidAndNameSalesManager = async () => {
@@ -171,7 +171,7 @@ export const getAllClientsNoPaidAndNameSalesManager = async () => {
 };
 
 
-//20. Devuelve el nombre de los clientes que han hecho pagos y
+//2.4 Devuelve el nombre de los clientes que han hecho pagos y
 // el nombre de sus representantes junto con la ciudad de la oficina 
 // a la que pertenece el representante.
 
