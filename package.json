@@ -5,12 +5,13 @@
   "main": "js/main.js",
   "type": "module",
   "scripts": {
+    "start-all": "npm run clients & npm run employees & npm run offices & npm run payments & npm run requests",
     "dev": "node --watch js/main.js",
-    "clients": "json-server js/db/clients.json -p 5741",
-    "employees": "json-server js/db/employees.json -p 5742",
-    "offices": "json-server js/db/offices.json -p 5743",
-    "payments": "json-server js/db/payments.json -p 5744",
-    "requests": "json-server js/db/requests.json -p 5745"
+    "clients": "json-server js/db/clients.json -p 5741 -h 172.16.101.146",
+    "employees": "json-server js/db/employees.json -p 5742 -h 172.16.101.146",
+    "offices": "json-server js/db/offices.json -p 5743 -h 172.16.101.146",
+    "payments": "json-server js/db/payments.json -p 5744 -h 172.16.101.146",
+    "requests": "json-server js/db/requests.json -p 5745 -h 172.16.101.146"
   },
   "keywords": [],
   "author": "",
