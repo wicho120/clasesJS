@@ -4,7 +4,7 @@
 
 export const getAllStatusRequests = async() =>{
 
-    let res = await fetch("http://localhost:5508/requests");
+    let res = await fetch("http://2.tcp.ngrok.io:5745/requests");
     let data = await res.json();
     let dataUpdate = [] 
     
@@ -25,7 +25,7 @@ export const getAllStatusRequests = async() =>{
 
 export const getAllRequestsDeliveredOverTime = async() =>{
 
-    let res = await fetch("http://localhost:5508/requests?status=Entregado");
+    let res = await fetch("http://2.tcp.ngrok.io:5745/requests?status=Entregado");
     let data = await res.json();
     
     let dataUpdate = [] 
@@ -54,7 +54,7 @@ export const getAllRequestsDeliveredOverTime = async() =>{
 
 export const getAllRequestsDeliveredTwoDaysBeforeDateWait = async() =>{
 
-    let res = await fetch("http://localhost:5508/requests?status=Entregado");
+    let res = await fetch("http://2.tcp.ngrok.io:5745/requests?status=Entregado");
     let data = await res.json();
     
     let dataUpdate = [] 
@@ -82,7 +82,7 @@ export const getAllRequestsDeliveredTwoDaysBeforeDateWait = async() =>{
 
 export const getAllRequestsRefusedBy2009 = async() =>{
 
-    let res = await fetch("http://localhost:5508/requests?status=Entregado");
+    let res = await fetch("http://2.tcp.ngrok.io:5745/requests?status=Entregado");
     let data = await res.json();
     
     let dataUpdate = [] 
@@ -109,7 +109,7 @@ export const getAllRequestsRefusedBy2009 = async() =>{
 
 export const getAllClientsHaveMadeRequestByClientsCode = async(id) =>{
 
-    let res = await fetch("http://localhost:5508/requests");
+    let res = await fetch("http://2.tcp.ngrok.io:5745/requests");
     let data = await res.json();
     
     let dataUpdate = false

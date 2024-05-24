@@ -19,7 +19,7 @@ import {
 
 export const getAllMadridClientsCodeSalesManager11_30 = async() => {
 
-    let res = await fetch("http://localhost:5501/clients?city=Madrid")
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients?city=Madrid")
     let data = await res.json();
     let dataUpdate = [];
 
@@ -36,7 +36,7 @@ export const getAllMadridClientsCodeSalesManager11_30 = async() => {
 // españoles.
 
 export const getNamesAllClientsBySpain = async() => {
-    let res = await fetch("http://localhost:5501/clients?country=Spain")
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients?country=Spain")
     let data = await res.json();
 
     let dataUpdate = data.map(val => {
@@ -55,7 +55,7 @@ export const getNamesAllClientsBySpain = async() => {
 
 
 export const getAllClientsNameSalesManagerOffice = async () => {
-    let res = await fetch("http://localhost:5501/clients");
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients");
     let data = await res.json();
     let dataUpdate = [];
 
@@ -85,7 +85,7 @@ export const getAllClientsNameSalesManagerOffice = async () => {
 // el nombre y apellido de su representante de ventas.
 
 export const getAllClientsNameAndHisManagerSales = async () => {
-    let res = await fetch("http://localhost:5501/clients");
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients");
     let data = await res.json();
     let dataUpdate = [];
 
@@ -111,7 +111,7 @@ export const getAllClientsNameAndHisManagerSales = async () => {
 // pagos junto con el nombre de sus representantes de ventas.
 
 export const getAllClientsPaidAndNameSalesManager = async () => {
-    let res = await fetch("http://localhost:5501/clients");
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients");
     let data = await res.json();
     let dataUpdate = [];
 
@@ -143,7 +143,7 @@ export const getAllClientsPaidAndNameSalesManager = async () => {
 // realizado pagos junto con el nombre de sus representantes de ventas.
 
 export const getAllClientsNoPaidAndNameSalesManager = async () => {
-    let res = await fetch("http://localhost:5501/clients");
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients");
     let data = await res.json();
     let dataUpdate = [];
 
@@ -176,7 +176,7 @@ export const getAllClientsNoPaidAndNameSalesManager = async () => {
 // a la que pertenece el representante.
 
 export const getAllClientsPaidAndNameSalesManagerAndCityOffice = async () => {
-    let res = await fetch("http://localhost:5501/clients");
+    let res = await fetch("http://2.tcp.ngrok.io:5741/clients");
     let data = await res.json();
     let dataUpdate = [];
 
