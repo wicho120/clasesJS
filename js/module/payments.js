@@ -4,7 +4,7 @@
 
 export const getAllPayments2008byPaypal = async() => {
 
-    let res = await fetch("http://176.16.101.146:5744/payments?payment=PayPal")
+    let res = await fetch("http://172.16.101.146:5744/payments?payment=PayPal")
     let data = await res.json();
     let dataUpdate = []
 
@@ -30,7 +30,7 @@ export const getAllPayments2008byPaypal = async() => {
 // aquellos códigos de cliente que aparezcan repetidos.
 
 export const getAllClientsPaidIn2008 = async() => {
-    let res = await fetch("http://176.16.101.146:5744/payments")
+    let res = await fetch("http://172.16.101.146:5744/payments")
     let data = await res.json();
     let dataUpdate = []
     
